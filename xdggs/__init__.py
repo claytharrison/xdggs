@@ -1,25 +1,28 @@
-from importlib.metadata import PackageNotFoundError, version
+from importlib.metadata import version
 
 import xdggs.tutorial  # noqa: F401
 from xdggs.accessor import DGGSAccessor  # noqa: F401
+from xdggs.conventions import decode, encode
+from xdggs.fibgrid import FibGridIndex, FibGridInfo
 from xdggs.grid import DGGSInfo
 from xdggs.h3 import H3Index, H3Info
 from xdggs.healpix import HealpixIndex, HealpixInfo
-from xdggs.index import DGGSIndex, decode
+from xdggs.index import DGGSIndex
+from xdggs.utils import register_dggs
 
-try:
-    __version__ = version("xdggs")
-except PackageNotFoundError:  # noqa # pragma: no cover
-    # package is not installed
-    __version__ = "9999"
+__version__ = version("xdggs")
 
 __all__ = [
     "__version__",
     "DGGSInfo",
+    "FibGridInfo",
     "H3Info",
     "HealpixInfo",
     "DGGSIndex",
+    "FibGridIndex",
     "H3Index",
     "HealpixIndex",
+    "encode",
     "decode",
+    "register_dggs",
 ]

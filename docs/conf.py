@@ -33,6 +33,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "IPython.sphinxext.ipython_directive",
     "IPython.sphinxext.ipython_console_highlighting",
+    "jupyter_sphinx",
     "sphinx_autosummary_accessors",
     "myst_nb",
     "sphinx_design",
@@ -88,6 +89,8 @@ napoleon_type_aliases = {
     "scalar": ":term:`scalar`",
     "array": ":term:`array`",
     "hashable": ":term:`hashable <name>`",
+    # geographic
+    "ellipsoid-like": ":term:`ellipsoid-like <healpix-geo:ellipsoid-like>`",
 }
 
 # -- Options for HTML output -------------------------------------------------
@@ -115,6 +118,7 @@ intersphinx_mapping = {
     "healpy": ("https://healpy.readthedocs.io/en/latest", None),
     "cdshealpix-python": ("https://cds-astro.github.io/cds-healpix-python", None),
     "shapely": ("https://shapely.readthedocs.io/en/stable", None),
+    "healpix-geo": ("https://healpix-geo.readthedocs.io/en/latest", None),
 }
 
 # -- myst-nb options ---------------------------------------------------------

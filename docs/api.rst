@@ -38,7 +38,22 @@ Parameters
 
    Dataset.dggs.grid_info
    Dataset.dggs.params
+
+.. autosummary::
+   :toctree: generated
+   :template: autosummary/accessor_method.rst
+
    Dataset.dggs.decode
+   Dataset.dggs.encode
+
+Indexing
+--------
+
+.. autosummary::
+   :toctree: generated
+   :template: autosummary/accessor_method.rst
+
+   Dataset.dggs.sel_latlon
 
 
 Data inference
@@ -50,6 +65,7 @@ Data inference
 
    Dataset.dggs.cell_centers
    Dataset.dggs.cell_boundaries
+   Dataset.dggs.assign_latlon_coords
 
 DataArray
 =========
@@ -62,7 +78,23 @@ Parameters
 
    DataArray.dggs.grid_info
    DataArray.dggs.params
+
+.. autosummary::
+   :toctree: generated
+   :template: autosummary/accessor_method.rst
+
    DataArray.dggs.decode
+   DataArray.dggs.encode
+
+Indexing
+--------
+
+.. autosummary::
+   :toctree: generated
+   :template: autosummary/accessor_method.rst
+
+   DataArray.dggs.sel_latlon
+
 
 
 Data inference
@@ -74,6 +106,7 @@ Data inference
 
    DataArray.dggs.cell_centers
    DataArray.dggs.cell_boundaries
+   DataArray.dggs.assign_latlon_coords
 
 Plotting
 --------
@@ -92,3 +125,22 @@ Tutorial
    :toctree: generated
 
    tutorial.open_dataset
+
+Advanced API
+============
+
+Index
+-----
+.. autosummary::
+   :toctree: generated
+
+   register_dggs
+
+Conventions
+-----------
+.. autosummary::
+   :toctree: generated
+
+   conventions.Convention
+   conventions.register_convention
+   conventions.DecoderError
