@@ -18,13 +18,15 @@ tutorials/h3
 tutorials/healpix
 ```
 
-<!-- ```{toctree} -->
-<!-- --- -->
-<!-- maxdepth: 3 -->
-<!-- caption: User guide -->
-<!-- hidden: true -->
-<!-- --- -->
-<!-- ``` -->
+```{toctree}
+---
+maxdepth: 3
+caption: User guide
+hidden: true
+---
+Conventions <user_guide/conventions>
+Fibonacci Grid Quickstart <user_guide/fibgrid_quickstart>
+```
 
 ```{toctree}
 ---

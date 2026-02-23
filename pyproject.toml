@@ -1,19 +1,5 @@
-[build-system]
-requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools_scm]
-fallback_version = "9999"
-
-[tool.setuptools.packages.find]
-include = [
-  "xdggs",
-  "xdggs.*",
-]
-
 [project]
 name = "xdggs"
-dynamic = ["version"]
 authors = [
   { name = "Benoît Bovy" },
   { name = "Justus Magin" },
@@ -21,7 +7,7 @@ authors = [
 maintainers = [
   { name = "xdggs contributors" },
 ]
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
 description = "Xarray extension for DGGS"
 keywords = ["DGGS", "xarray", "GIS"]
 readme = "README.md"
@@ -30,31 +16,45 @@ classifiers = [
   "License :: OSI Approved :: Apache Software License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Topic :: Scientific/Engineering :: GIS",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
   "xarray",
+  "numpy>=2.0",
   "cdshealpix",
   "fibgrid",
+  "healpix-geo>=0.0.9",
   "h3ronpy",
-  "typing-extensions",
   "lonboard>=0.9.3",
   "pyproj>=3.3",
   "matplotlib",
   "arro3-core>=0.4.0",
   "pooch",
 ]
+dynamic = ["version"]
 
 [project.urls]
 Documentation = "https://xdggs.readthedocs.io"
 Repository = "https://github.com/xarray-contrib/xdggs"
 
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch]
+version.source = "vcs"
+
+[tool.hatch.metadata.hooks.vcs]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["xdggs"]
+
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 builtins = ["ellipsis"]
 exclude = [
   ".git",
@@ -66,13 +66,10 @@ exclude = [
 line-length = 100
 
 [tool.ruff.lint]
-# E402: module level import not at top of file
-# E501: line too long - let black worry about that
-# E731: do not assign a lambda expression, use a def
 ignore = [
-  "E402",
-  "E501",
-  "E731",
+  "E402", # E402: module level import not at top of file
+  "E501", # E501: line too long - let black worry about that
+  "E731", # E731: do not assign a lambda expression, use a def
 ]
 select = [
   "F",   # Pyflakes
@@ -112,4 +109,8 @@ exclude_lines = ["pragma: no cover", "if TYPE_CHECKING"]
 [tool.pytest.ini_options]
 filterwarnings = [
   "error:::xdggs.*",
+  # weird cython error, see https://github.com/Unidata/netcdf4-python/issues/1354
+  "ignore:numpy.ndarray size changed",
+  # traitlets deprecation
+  "ignore:.*is deprecated in traitlets:DeprecationWarning",
 ]

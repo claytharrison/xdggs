@@ -1,16 +1,56 @@
 # Changelog
 
-## 0.2.1 (_unreleased_)
+## 0.6.0 (2026-02-05)
+
+- Support variable-sized cells with the `"zuniq"` indexing scheme in `healpix` ({pull}`207`)
+- Fix alignment of healpix datasets ({pull}`208`)
+- Refactor the keyword arguments to `DGGSIndex.sel`, allowing `RangeMOCIndex.sel` to succeed ({pull}`211`)
+- Support converting between different conventions ({pull}`179`)
+
+## 0.5.0 (2025-12-12)
+
+- Support ellipsoids for `healpix` ({pull}`194`)
+- Move the plotting code into a custom `anywidget`-based widget ({pull}`199`)
+- Temporarily remove the interactive facet plot feature ({pull}`200`)
+
+## 0.4.0 (2025-11-03)
+
+- support interactive facet plots and combining maps ({pull}`183`)
+
+## 0.3.0 (2025-09-26)
 
 ### New features
 
+- support for alignment between indexes with the same grid parameters ({pull}`166`)
+- allow choosing a moc-based index for healpix ({pull}`153`)
+
+## 0.2.2 (2025-09-15)
+
+### New features
+
+- Compute parent and child cell ids ({pull}`62`)
+
 ### Bug fixes
+
+- make sure arrays passed to `arro3` are C contiguous ({pull}`168`)
+
+## Internals
+
+- migrate to `pixi` and `hatchling` ({pull}`167`)
+
+## 0.2.1 (2025-08-05)
+
+### New features
+
+- officially support python 3.13 ({pull}`162`)
+
+### Breaking changes
+
+- drop support for python 3.10 ({pull}`162`)
 
 ### Documentation
 
-- Documentation Contributer Guide + Github Button ({pull}`137`)
-
-### Internal changes
+- Documentation Contributor's Guide + Github Button ({pull}`137`)
 
 ## 0.2.0 (2025-02-12)
 

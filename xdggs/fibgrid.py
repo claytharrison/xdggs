@@ -1,17 +1,13 @@
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from functools import lru_cache
-from typing import Any, ClassVar
+from typing import Any, ClassVar, Self
 
 import numpy as np
 import xarray as xr
 from xarray.indexes import PandasIndex
 
-try:
-    from typing import Self
-except ImportError:  # pragma: no cover
-    from typing_extensions import Self
-
+from xdggs.ellipsoid import Ellipsoid, Sphere
 from xdggs.grid import DGGSInfo, translate_parameters
 from xdggs.index import DGGSIndex
 from xdggs.utils import _extract_cell_id_variable, register_dggs
@@ -58,12 +54,14 @@ class FibGridInfo(DGGSInfo):
     - ``resolution=6.25``  → ``level=2``
     """
 
-    resolution: float
+    # Override parent's ``level``: derived from ``resolution``, not set by user.
+    level: int = field(default=0, init=False, repr=False, compare=False)
+
+    resolution: float = field(kw_only=True)
     """float : Grid resolution in kilometres (6.25, 12.5 or 25.0)."""
 
-    # Override the parent's ``level`` field: it is derived from ``resolution``
-    # and should not be set directly by the user.
-    level: int = field(default=0, init=False, repr=False, compare=False)
+    # Override parent's ``ellipsoid`` to keep default; Fibonacci grid is WGS84.
+    ellipsoid: str | Sphere | Ellipsoid = field(default="sphere", kw_only=True)
 
     valid_parameters: ClassVar[dict[str, Any]] = {
         "resolution": _VALID_RESOLUTIONS,
@@ -178,6 +176,25 @@ class FibGridInfo(DGGSInfo):
             "The Fibonacci grid does not define cell boundaries."
         )
 
+    def zoom_to(self, cell_ids: Any, level: int) -> None:
+        """Not implemented – the Fibonacci grid has no hierarchical structure.
+
+        Parameters
+        ----------
+        cell_ids : array-like
+            Unused.  Present for interface compatibility with :class:`DGGSInfo`.
+        level : int
+            Unused.  Present for interface compatibility with :class:`DGGSInfo`.
+
+        Raises
+        ------
+        NotImplementedError
+            Always.
+        """
+        raise NotImplementedError(
+            "The Fibonacci grid does not support zoom_to (no hierarchical structure)."
+        )
+
 
 @register_dggs("fibgrid")
 class FibGridIndex(DGGSIndex):
@@ -220,3 +237,4 @@ class FibGridIndex(DGGSIndex):
 
     def _repr_inline_(self, max_width: int) -> str:
         return f"FibGridIndex(resolution={self._grid.resolution}km)"
+
