@@ -54,7 +54,7 @@ class FibGridInfo(DGGSInfo):
     - ``resolution=6.25``  → ``level=2``
     """
 
-    # Override parent's ``level``: derived from ``resolution``, not set by user.
+    # Override parent's ``level``: set in ``__post_init__`` from ``resolution``.
     level: int = field(default=0, init=False, repr=False, compare=False)
 
     resolution: float = field(kw_only=True)

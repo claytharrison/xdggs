@@ -211,11 +211,16 @@ ds_encoded.to_netcdf("output.nc")
 
 ## Notes on the nearest-neighbour paradigm
 
-Because the Fibonacci grid has no cell-boundary geometry, the following
-operations are **not** available:
+The Fibonacci grid is a **point-cloud** (a set of discrete locations on the
+sphere) rather than a partition of the sphere into non-overlapping cells.  As
+a result:
 
-- `ds.dggs.cell_boundaries()` – raises `NotImplementedError`
-- `ds.dggs.zoom_to(level)` – raises `NotImplementedError`
+- There is no hierarchical structure, so `ds.dggs.zoom_to(level)` raises
+  `NotImplementedError`.
+- There are no polygon boundaries for cells, so `ds.dggs.cell_boundaries()`
+  raises `NotImplementedError`.
 
-Everything else – `sel_latlon`, `assign_latlon_coords`, `cell_centers`,
-`decode`, `encode` – works as with other grids.
+`sel_latlon` handles both of these gracefully by using nearest-neighbour
+lookup instead of point-in-polygon containment.  Everything else –
+`assign_latlon_coords`, `cell_centers`, `decode`, `encode` – works as with
+other grids.
