@@ -2,6 +2,7 @@ from importlib.metadata import PackageNotFoundError, version
 
 import xdggs.tutorial  # noqa: F401
 from xdggs.accessor import DGGSAccessor  # noqa: F401
+from xdggs.fibgrid import FibGridIndex, FibGridInfo
 from xdggs.grid import DGGSInfo
 from xdggs.h3 import H3Index, H3Info
 from xdggs.healpix import HealpixIndex, HealpixInfo
@@ -16,9 +17,11 @@ except PackageNotFoundError:  # noqa # pragma: no cover
 __all__ = [
     "__version__",
     "DGGSInfo",
+    "FibGridInfo",
     "H3Info",
     "HealpixInfo",
     "DGGSIndex",
+    "FibGridIndex",
     "H3Index",
     "HealpixIndex",
     "decode",

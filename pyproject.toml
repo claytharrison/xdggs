@@ -39,6 +39,7 @@ requires-python = ">=3.10"
 dependencies = [
   "xarray",
   "cdshealpix",
+  "fibgrid",
   "h3ronpy",
   "typing-extensions",
   "lonboard>=0.9.3",
@@ -92,6 +93,7 @@ known-third-party = [
   "xarray",
   "cdshealpix",
   "astropy",
+  "fibgrid",
   "h3ronpy",
 ]
 
